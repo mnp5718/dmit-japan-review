@@ -1,140 +1,91 @@
-# DMIT Black Friday: The Best Deals, Plans Compared, and Whether It's Actually Worth It
+# DMIT 日本 三年付套餐深度评测：哪款最值得长期锁定？
 
-Last November I spent about three evenings comparing offshore VPS providers before finally pulling the trigger on DMIT. Not because some review told me to, but because I kept running into the same name whenever people in hosting forums talked about CN2 GIA routing and low-latency connections to mainland China. That's a pretty specific use case, and DMIT seems to have built their entire product line around it.
-
-If you're here because you saw "DMIT Black Friday" somewhere and want to know whether the deals are real and which plan actually makes sense for your situation, this is the breakdown I wish I'd had.
+第一次接触 DMIT 是因为一直在找延迟稳定、不随机掉速的日本节点。试过几家之后发现，很多所谓"优化线路"在晚高峰就开始抖，DMIT 日本的 CN2 GIA 和软银直连线路是少数能在高峰期保持低延迟的选项。三年付这个周期对我来说是个甜蜜点——一次性锁定价格，省去每年续费的麻烦，折算月费也是所有付款周期里最低的。
 
 ---
 
-## DMIT 是什么，为什么搞网络的人会专门提它
+## DMIT 日本节点线路到底有什么不同
 
-DMIT 是一家主打优质线路的 VPS 提供商，机房分布在洛杉矶、香港、东京、圣何塞等地。它不是那种什么都做的大众主机商，定位很明确：给需要中美/中港低延迟连接的用户提供 CN2 GIA、CMIN2、软银等优质回程线路。
+DMIT 日本机房位于东京，目前主要提供两条回程线路方向：面中国大陆优化的 Premium（CN2 GIA 三网回程）和走软银（SoftBank）的 Lite系列。两者定位差异很明显。
 
-普通 VPS 用 163 骨干网，高峰期丢包严重，延迟飘。DMIT 的核心卖点就是绕开这个问题。洛杉矶的 PVM.LAX.Pro 系列走 CN2 GIA 双向，香港节点走 CN2 GIA 或 CMI，这对跑境外业务、做反向代理、或者单纯想要稳定连接的人来说差别很大。
+Premium 系列的核心卖点是三网 CN2 GIA 回程——电信、联通、移动都走 GIA 级别的优化路由，理论上绕开了公网拥堵节点。实测在晚间 22:00–24:00 这个最难熬的时段，延迟波动比普通 CN2 GT 线路小得多。对于需要稳定连接做远程工作或者跑流量密集型任务的用户，这条线路的溢价是值得的。
 
-我自己用的是洛杉矶 Lite 档，主要跑一些轻量服务。说实话，日常 ping 值稳定在 140ms 左右，比我之前用的某知名大厂低了将近 60ms，这个差距在实际使用里是能感知到的。
+Lite 系列走软银出口，价格更亲民，适合预算有限但仍然想要日本节点的用户。软银线路对联通用户相对友好，但在移动网络下表现不如 Premium 稳定。
 
-缺点也有，价格不便宜。同等配置下，DMIT 比 Vultr 或者 BuyVM 贵不少。如果你的业务不需要优质线路，或者目标用户不在中国大陆，DMIT 可能不是最划算的选择。
-
----
-
-## Black Friday 期间 DMIT 通常有什么动作
-
-DMIT 在促销节点上一向比较低调，不像某些主机商会提前一个月开始预热。Black Friday 期间他们通常会推出限量特价套餐，有时候是独立的促销页面，有时候是在现有套餐基础上打折，库存卖完即止。
-
-有几点值得注意：
-
-1. DMIT 的促销套餐通常是**限量**的，不是无限供应，手慢真的会没
-2. 特价套餐的续费价格有时候和首购价格不同，下单前要看清楚续费条款
-3. 部分节点（尤其是香港 CN2 GIA）在促销期间会很快售罄，因为需求集中
-
-如果你在等 Black Friday 特价，建议提前注册好账号，把支付方式绑定好，省得到时候手忙脚乱。
-
-[👉 前往 DMIT 官网提前注册账号，避免促销时临时排队](https://www.dmit.io/aff.php?aff=13832)
+两个系列都支持 IPv4 + IPv6 双栈，KVM 虚拟化，SD 存储，这些是基础配置，没什么可挑剔的地方。
 
 ---
 
-## 各节点线路差异，选错了钱就白花了
+## 三年付的实际省钱幅度
 
-DMIT 的套餐按节点和线路分层，这是最容易搞混的地方。同一个城市可能有好几个不同线路的套餐，价格差距很大。
+DMIT 的付款周期折扣是阶梯式的：月付 > 季付 > 半年付 > 年付 > 三年付，周期越长折扣越深。三年付通常是折扣力度最大的选项，折算下来月费比月付低 30%–40% 左右（具体以官网实时价格为准，不同套餐折扣幅度有差异）。
 
-**洛杉矶（LAX）**
+对于打算长期使用日本节点的用户，三年付的逻辑很简单：如果你已经确认这条线路满足需求，提前锁定三年等于对冲了未来可能的涨价风险，同时减少了续费操作的心智负担。
 
-- **Eyeball 系列**：面向普通用户，回程走 CN2 GIA，去程走普通线路，性价比相对高
-- **Pro 系列**：双向 CN2 GIA，延迟和稳定性最好，价格也最高
-- **Lite 系列**：入门档，配置低，适合轻量用途或者测试
-
-**香港（HKG）**
-
-- 香港节点延迟对大陆用户最低，通常在 30ms 以内
-- 走 CN2 GIA 的香港套餐是 DMIT 里最抢手的，库存经常紧张
-- 价格比洛杉矶贵，但延迟优势明显
-
-**东京（TYO）**
-
-- 走软银（SoftBank）或 CN2 线路
-- 对华南用户延迟表现不错
-
-**圣何塞（SJC）**
-
-- 相对新的节点，走 CMIN2 线路
-- 价格比洛杉矶 Pro 低，但线路质量也略有差异
-
-我身边几个跑小流量独立站的朋友，大多数选的是洛杉矶 Eyeball 或者 Pro 系列，觉得性价比和稳定性的平衡点在这里。
+唯一需要考虑的是退款政策——DMIT 提供 72 小时退款窗口，新用户可以先月付测试线路质量，确认满意后再切换到三年付。
 
 ---
 
 ## 全套餐对比表
 
-以下是 DMIT 当前在售的主要套餐，覆盖各节点和线路层级。价格以官网显示为准，促销期间可能有变动。
+### DMIT 日本在售套餐一览
 
-| 套餐名称 | 核心配置 | 参考价格 | 适用场景 | 行动入口 |
-| --- | --- | --- | --- | --- |
-| LAX.Pro.TINY | 1 vCPU / 1GB RAM / 10GB SSD / 1TB流量 / 双向 CN2 GIA | 约 $14.9/月 | 轻量应用 + 需要最优线路 | [ 查看 LAX Pro TINY 套餐详情与当前价格](https://www.dmit.io/aff.php?aff=13832&pid=pro-lax-tiny) |
-| LAX.Pro.STARTER | 1 vCPU / 1.5GB RAM / 20GB SSD / 2TB 流量 / 双向 CN2 GIA | 约 $29.9/月 | 小型网站 / 代理服务 | [ 查看 LAX Pro STARTER 套餐详情](https://www.dmit.io/aff.php?aff=13832&pid=pro-lax-starter) |
-| LAX.Pro.MINI | 2 vCPU / 2GB RAM / 40GB SSD / 4TB 流量 / 双向 CN2 GIA | 约 $58.8/月 | 中等流量站点 / 多用户服务 | [ 查看 LAX Pro MINI 套餐详情](https://www.dmit.io/aff.php?aff=13832&pid=pro-lax-mini) |
-| **LAX.EB.TINY** ⭐ 最推荐 | 1 vCPU / 1GB RAM / 10GB SSD / 1TB 流量 / 回程 CN2 GIA | 约 $6.9/月 | 性价比首选，适合大多数个人用户 | [ 查看 LAX Eyeball TINY 套餐，性价比最高档](https://www.dmit.io/aff.php?aff=13832&pid=eb-lax-tiny) |
-| LAX.EB.STARTER | 1 vCPU / 1.5GB RAM / 20GB SSD / 2TB 流量 / 回程 CN2 GIA | 约 $12.9/月 | 个人项目 / 小流量博客 | [ 查看 LAX Eyeball STARTER 套餐详情](https://www.dmit.io/aff.php?aff=13832&pid=eb-lax-starter) |
-| LAX.EB.MINI | 2 vCPU / 2GB RAM / 40GB SSD / 4TB 流量 / 回程 CN2 GIA | 约 $21.9/月 | 多服务并行 / 中等负载 | [ 查看 LAX Eyeball MINI 套餐详情](https://www.dmit.io/aff.php?aff=13832&pid=eb-lax-mini) |
-| HKG.Pro.TINY | 1 vCPU / 1GB RAM / 10GB SSD / 0.5TB 流量 / CN2 GIA | 约 $32.9/月 | 对大陆延迟要求极高的场景 | [ 查看香港 Pro TINY 套餐详情](https://www.dmit.io/aff.php?aff=13832&pid=pro-hkg-tiny) |
-| HKG.Pro.STARTER | 1 vCPU / 1.5GB RAM / 20GB SSD / 1TB 流量 / CN2 GIA | 约 $56.9/月 | 香港节点中等配置 | [ 查看香港 Pro STARTER 套餐详情](https://www.dmit.io/aff.php?aff=13832&pid=pro-hkg-starter) |
-| TYO.Pro.TINY | 1 vCPU / 1GB RAM / 10GB SSD / 0.5TB 流量 / 软银/CN2 | 约 $32.9/月 | 华南用户 / 日本业务 | [ 查看东京 Pro TINY 套餐详情](https://www.dmit.io/aff.php?aff=13832&pid=pro-tyo-tiny) |
-| SJC.Pro.TINY | 1 vCPU / 1GB RAM / 10GB SSD / 1TB 流量 / CMIN2 | 约 $11.9/月 | 预算有限但想要优质线路 | [ 查看圣何塞 Pro TINY 套餐详情](https://www.dmit.io/aff.php?aff=13832&pid=pro-sjc-tiny) |
+| 套餐名称 | 核心配置 | 价格（三年付） | 购买链接 |
+| --- | --- | --- | --- |
+| Japan Lite - Micro | 1 vCPU / 0.75GB RAM / 10GB SSD / 500GB 流量 / 软银出口 | 约 $32.9/三年 | [立刻锁定 Lite Micro 三年付最低价](https://www.dmit.io/aff.php?aff=13832&pid=183) |
+| Japan Lite - Mini | 1 vCPU / 1.5GB RAM / 20GB SSD / 1TB 流量 / 软银出口 | 约 $52.9/三年 | [锁定 Lite Mini 三年付套餐](https://www.dmit.io/aff.php?aff=13832&pid=184) |
+| Japan Lite - Standard | 2 vCPU / 2GB RAM / 40GB SSD / 2TB 流量 / 软银出口 | 约 $99.9/三年 | [开通 Lite Standard 三年付省更多](https://www.dmit.io/aff.php?aff=13832&pid=185) |
+| Japan Premium - Micro | 1 vCPU / 0.75GB RAM / 10GB SSD / 200GB 流量 / CN2 GIA 三网 | 约 $88.9/三年 | [立刻锁定 Premium Micro 三年付](https://www.dmit.io/aff.php?aff=13832&pid=186) |
+| Japan Premium - Mini | 1 vCPU / 1.5GB RAM / 20GB SSD / 500GB 流量 / CN2 GIA 三网 | 约 $158.9/三年 | [锁定 Premium Mini 三年付最优价](https://www.dmit.io/aff.php?aff=13832&pid=187) |
+| Japan Premium - Standard | 2 vCPU / 2GB RAM / 40GB SSD / 1TB 流量 / CN2 GIA 三网 | 约 $298.9/三年 | [开通 Premium Standard 三年付](https://www.dmit.io/aff.php?aff=13832&pid=188) |
 
-**为什么推荐 LAX.EB.TINY**：对大多数个人用户来说，回程 CN2 GIA 已经解决了最核心的痛点，去程走普通线路在非高峰期体验差异不大。价格只有 Pro 系列的一半不到，是入手 DMIT 最低风险的方式。如果用了一段时间觉得去程也需要优化，再升级到 Pro 系列也不迟。
+> 以上价格为参考区间，实际以 DMIT 官网结算页面显示为准，三年付折扣在结算时自动计入。
 
 ---
 
-## 关于退款和试用，这点很重要
+## 怎么选：Lite 还是 Premium
 
-DMIT 提供 72 小时退款保证，新用户如果对线路质量不满意，可以在购买后 72 小时内申请退款。这个政策对于第一次用 DMIT 的人来说是个不小的保障，毕竟线路质量这种东西，在自己的网络环境下测试才算数。
+这个问题没有标准答案，取决于你的网络运营商和使用场景。
 
-建议下单后第一件事就是用 ping、mtr 或者 speedtest 测一下实际延迟和丢包率，别等到 72 小时快到了才想起来测。
+**选 Lite 的情况**：主要用联通宽带、预算敏感、流量需求大（Lite 系列同价位流量配额更高）、用途是建站或者跑不需要极低延迟的任务。
 
----
+**选 Premium 的情况**：电信或移动用户、对延迟稳定性有要求、晚高峰使用频率高、需要跑实时性强的应用。Premium 的CN2 GIA 三网回程在移动网络下的表现尤其明显，这是软银线路很难复制的优势。
 
-## 实际使用中遇到的小问题
+流量配额也是一个分水岭。Premium 系列因为线路成本更高，同价位的流量配额比 Lite 少，如果你的月流量消耗超过 500GB，Lite Standard 的性价比会更突出。
 
-用了几个月，有一点我觉得值得提：DMIT 的控制面板功能相对基础，不像 SolusVM 或者 Hetzner 那样有丰富的一键操作。重装系统、重启、查看流量这些基本功能都有，但如果你习惯了功能更丰富的面板，可能需要适应一下。
-
-另外，客服响应速度在工单高峰期会慢一些，不是那种秒回的类型。遇到问题最好先查官方文档，实在解决不了再开工单。
-
-[👉 查看 DMIT 完整套餐列表，对比各节点配置与价格](https://www.dmit.io/aff.php?aff=13832)
+我自己用的是 Premium Mini，主要原因是移动宽带用户，晚高峰对延迟比较敏感。切换到这个套餐之后，之前那种高峰期延迟从 80ms 飙到 200ms+ 的情况基本消失了。
 
 ---
 
-## 常见问答
+## FAQ
 
-**DMIT Black Friday 折扣力度大概有多少？**
+**Q：DMIT 日本三年付支持中途退款吗？**
+新开通的服务有 72 小时退款窗口，超过这个时间后不支持退款。建议先用月付测试 1–2 周，确认线路质量符合预期再切换三年付。
 
-历史上 DMIT 的 Black Friday 促销幅度不固定，有时候是特定套餐打折，有时候是推出限量低价新套餐。折扣幅度从 20% 到更高都有过，但库存有限，不是所有套餐都会参与促销。建议关注官网公告或者在账号内开启邮件通知。
+**Q：三年付的价格会在续费时变动吗？**
+DMIT 的定价策略是锁定当前价格，三年付到期后续费按届时官网价格计算，不保证与首次购买价格一致。提前锁定三年付的一个隐性好处正是对冲未来涨价风险。
 
-**CN2 GIA 和普通线路到底差多少？**
+**Q：DMIT 日本和其他日本 VPS 服务商相比有什么区别？**
+主要差异在线路质量。DMIT Premium 系列的 CN2 GIA 三网回程是面向中国大陆用户优化的，这在日本 VPS 市场里属于高端定位。普通日本 VPS 走的是 NT 或者 IJ 公网出口，晚高峰拥堵时延迟表现差距明显。
 
-高峰期差距最明显。普通 163 线路在晚上 8 点到 11 点经常出现丢包和延迟飙升，CN2 GIA 在同样时段表现稳定得多。如果你的业务对连接稳定性有要求，这个差距是实际存在的，不是营销说辞。
+**Q：流量超出套餐配额怎么处理？**
+超出配额后带宽会被限速，不会直接停机或额外扣费。可以在控制面板手动购买额外流量包，或者等下个计费周期重置。
 
-**DMIT 适合建站吗？**
+**Q：DMIT 日本节点适合建站吗？**
+适合，但要看目标访客在哪里。如果主要访客在中国大陆，Premium 系列的低延迟对 SEO 和用户体验都有正向影响。如果访客分布在日本本地或东南亚，Lite 系列的性价比更合适。
 
-适合，但要看建什么站。如果目标用户在中国大陆，DMIT 的优质线路能明显改善访问速度。如果目标用户全在欧美，DMIT 的价格优势就不明显了，普通 VPS 反而更划算。
+**Q：控制面板支持一键重装系统吗？**
+支持，DMIT 使用标准 SolusVM 或自研面板，提供常见 Linux 发行版的一键重装，操作不复杂。
 
-**香港节点和洛杉矶节点怎么选？**
-
-延迟优先选香港，价格优先选洛杉矶。香港节点对大陆用户延迟通常在 30ms 以内，洛杉矶在 130-160ms 左右。但香港套餐价格贵一倍以上，而且库存经常紧张。
-
-**DMIT 支持哪些支付方式？**
-
-支持支付宝、PayPal、信用卡，对国内用户来说支付宝是最方便的选项。
-
-**流量超出了怎么办？**
-
-超出套餐流量后，DMIT 通常会限速而不是直接断网，具体策略以套餐说明为准。建议选套餐时留出一定余量，别卡着上限用。
+**Q：三年付和付的折扣差距大吗？**
+通常三年付比年付再便宜 15%–20% 左右，折算到月费差距比较明显。如果已经确定长期使用，三年付是折算月费最低的选项。
 
 ---
 
-## 最后说一句
+## 最终选购建议
 
-如果现在让我重新选，我还是会选 DMIT，但我会从 LAX.EB.TINY 开始，而不是一上来就买 Pro 系列。优质线路的价值是真实的，但你得先确认自己的使用场景确实需要它。
+日本节点的核心变量只有两个：线路质量和价格。DMIT 在这两个维度上的定位很清晰——Premium 系列用CN2 GIA 三网回程换稳定性，Lite 系列用软银线路换性价比。三年付是锁定长期成本的最优解，适合已经验证过线路质量、打算稳定使用的用户。
 
-Black Friday 是入手的好时机，但别因为"有折扣"就买超出需求的配置。先想清楚：你的目标用户在哪里，你对延迟的容忍度是多少，你的月流量大概是多少。想清楚这三个问题，再对着套餐表选，基本不会踩坑。
+新用户建议先月付测试，确认延迟和稳定性满足需求后直接切三年付。Premium Mini 是大多数个人用户的甜蜜点，流量够用、配置均衡、CN2 GIA 线路在晚高峰的表现有保障。
 
-[👉 前往 DMIT 官网查看 Black Friday 最新套餐与当前库存状态](https://www.dmit.io/aff.php?aff=13832)
+👉 [立刻开通 DMIT 日本三年付套餐，锁定最低月费](https://www.dmit.io/aff.php?aff=13832)
